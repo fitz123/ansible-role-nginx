@@ -11,18 +11,34 @@ server {
 {% endif %}
 {% endblock %}
 
+{% block https_redirect %}
+{% if item.https_redirect | default(False) %}
+server {
+    listen       80;
+{% if nginx_listen_ipv6 %}
+    listen       [::]:80;
+{% endif %}
+    server_name  {{ item.server_name }};
+    return       301 https://{{ item.server_name.split(' ')[0] }}$request_uri;
+}
+{% endif %}
+{% endblock %}
+
 server {
     {% block server_begin %}{% endblock %}
 
     {% block server_basic -%}
-    listen {{ item.listen | default('80') }};
+    listen {{ item.listen | default('443') }};
 {% if nginx_listen_ipv6 %}
-    listen       [::]:{{item.listen | default('80') }};
+    listen       [::]:{{item.listen | default('443') }};
 {% endif %}
 
 {% if item.server_name is defined %}
     server_name {{ item.server_name }};
 {% endif %}
+
+    ssl_certificate     /etc/nginx/certs/{{ item.ssl_cert | default('ocap.cc') }}/fullchain.pem;
+    ssl_certificate_key /etc/nginx/certs/{{ item.ssl_cert | default('ocap.cc') }}/privkey.pem;
 
 {% if item.root is defined %}
     root {{ item.root }};
@@ -50,4 +66,7 @@ server {
 {% if item.extra_parameters is defined %}
     {{ item.extra_parameters|indent(4) }}
 {% endif %}
+    location / {
+        proxy_pass {{ item.proxy_pass }};
+    }
 }

@@ -1,4 +1,7 @@
 ---
+#nginx_vhost_path: /etc/nginx/sites-enabled
+nginx_user: "nginx"
+
 # Used only for Debian/Ubuntu installation, as the -t option for apt.
 nginx_default_release: ""
 
@@ -71,6 +74,7 @@ nginx_vhosts: []
 #
 #   # Properties that are only added if defined:
 #   server_name_redirect: "www.example.com" # default: N/A
+#   https_redirect: bool # used to create http->https permanent redirection
 #   error_page: ""
 #   access_log: ""
 #   error_log: ""
