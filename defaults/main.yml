@@ -1,5 +1,5 @@
 ---
-#nginx_vhost_path: /etc/nginx/sites-enabled
+nginx_ssl_cert_root: "/etc/dehydrated/certs/"
 nginx_user: "nginx"
 
 # Used only for Debian/Ubuntu installation, as the -t option for apt.
