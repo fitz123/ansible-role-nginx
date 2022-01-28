@@ -1,7 +1,8 @@
 ---
 dependencies:
   - role: dehydrated
-    vars: dehydrated_accept_letsencrypt_terms: yes
+    vars: 
+      dehydrated_accept_letsencrypt_terms: yes
       dehydrated_contactemail: alugovoi@ordercapital.com
       dehydrated_challengetype: dns-01
       dehydrated_lexicon_dns:
