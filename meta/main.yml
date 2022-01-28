@@ -1,5 +1,7 @@
 ---
-dependencies: []
+dependencies:
+  - nginx
+  - dehydrated
 
 galaxy_info:
   role_name: nginx
