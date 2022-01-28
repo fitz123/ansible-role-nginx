@@ -1,6 +1,16 @@
 ---
 dependencies:
-  - { role: dehydrated }
+  - role: dehydrated
+    vars: dehydrated_accept_letsencrypt_terms: yes
+      dehydrated_contactemail: alugovoi@ordercapital.com
+      dehydrated_challengetype: dns-01
+      dehydrated_lexicon_dns:
+        LEXICON_CLOUDFLARE_TOKEN: FTYRW2sD18rpv6IFaoyQsYWyf9DI81Aoq9niaOVi
+      dehydrated_domains: |
+        ocap.cc *.ocap.cc
+      dehydrated_deploycert: |
+        service nginx reload
+  - role: nginx
 
 galaxy_info:
   role_name: nginx
