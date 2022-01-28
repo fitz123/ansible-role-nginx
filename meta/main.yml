@@ -1,7 +1,6 @@
 ---
 dependencies:
-  - nginx
-  - dehydrated
+  - { role: dehydrated }
 
 galaxy_info:
   role_name: nginx
