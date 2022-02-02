@@ -51,9 +51,13 @@ server {
 {% endif %}
 {% if item.access_log is defined %}
     access_log {{ item.access_log }};
+{% elif item.server_name is defined %}
+    access_log /var/log/nginx/{{ item.server_name }}_access.log;
 {% endif %}
 {% if item.error_log is defined %}
     error_log {{ item.error_log }} error;
+{% elif item.server_name is defined %}
+    error_log /var/log/nginx/{{ item.server_name }}_error.log error;
 {% endif %}
 
 {% if item.return is defined %}
