@@ -6,6 +6,15 @@
 # Vhost configuration.
 - import_tasks: vhosts.yml
 
+- name: Add a user to a password file and ensure permissions are set
+  community.general.htpasswd:
+    path: /etc/nginx/passwdfile
+    name: promtail
+    password: 'MIIGti1YnBM5Dheql39ugtpVygGc9'
+    owner: root
+    group: nginx
+    mode: 0640
+
 # Nginx setup.
 - name: Copy nginx configuration in place.
   template:

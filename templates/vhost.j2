@@ -78,5 +78,9 @@ server {
     	proxy_set_header Upgrade $http_upgrade;
     	proxy_set_header Connection "Upgrade";
     	proxy_set_header Host $host;
+{% if item.basic_auth is defined %}
+	auth_basic           "Restricted Area";
+	auth_basic_user_file /etc/nginx/passwdfile; 
+{% endif %}
     }
 }
